@@ -1,6 +1,3 @@
-# weather-app-k8s
-Multi-tier app deployed on k8s with jenkins cicd
-
 # 🌍 Deploying Real-World WeatherApp Using Kubernetes ☁️🚀
 
 - A microservices application deployed on **Kubeadm Cluster**
