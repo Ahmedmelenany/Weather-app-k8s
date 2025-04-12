@@ -20,7 +20,7 @@ spec:
               name: mysql-secret
               key: auth-password
         - name: MYSQL_HOST
-          value: "mysql"  # Set the MySQL Service name or hostname
+          value: "mysql"  # MySQL Service name or hostname
         - name: MYSQL_PORT
           value: "3306"  # MySQL port, default is 3306
         command: ["/bin/sh", "-c"]
@@ -28,8 +28,8 @@ spec:
         - |
           mysql -h${MYSQL_HOST} -P${MYSQL_PORT} -uroot -p${MYSQL_ROOT_PASSWORD} <<EOF
           CREATE DATABASE IF NOT EXISTS weatherapp;
-          CREATE USER '${MYSQL_USER}'@'%' IDENTIFIED BY '${MYSQL_AUTH_PASSWORD}';
-          GRANT ALL PRIVILEGES ON weatherapp.* TO '${MYSQL_USER}'@'%';
+          CREATE USER 'authuser'@'%' IDENTIFIED BY '${MYSQL_AUTH_PASSWORD}';
+          GRANT ALL PRIVILEGES ON weatherapp.* TO 'authuser'@'%';
           FLUSH PRIVILEGES;
           EOF
       restartPolicy: Never

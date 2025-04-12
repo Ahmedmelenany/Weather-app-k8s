@@ -28,28 +28,17 @@ spec:
             secretKeyRef:
               name: mysql-secret
               key: auth-password
-        - name: MYSQL_USER
-          value: authuser
-        - name: MYSQL_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: mysql-secret
-              key: auth-password
         volumeMounts:
-        - name: mysql-persistent-storage
+        - name: my-storage
           mountPath: /var/lib/mysql
-        - name: config-volume
-          mountPath: /docker-entrypoint-initdb.d
-      volumes:
-      - name: config-volume
-        configMap:
-          name: mysql-config
-  volumeClaimTemplates:
-  - metadata:
-      name: mysql-persistent-storage
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      storageClassName: "standard"
-      resources:
-        requests:
-          storage: 10Gi
+    volumeClaimTemplates:
+    - metadata:
+        name: my-storage
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 2Gi
+        selector:
+          matchLabels:
+            app: storage

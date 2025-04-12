@@ -36,4 +36,4 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: mysql-secret
-                key: secret-key
+                key: secret-key          
