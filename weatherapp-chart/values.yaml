@@ -1,0 +1,19 @@
+auth:
+  replicas: 1
+  image: ahmedelenany703/weatherapp-auth:v1
+  port: 8080
+  db:
+    image: mysql:5.7
+ 
+
+api:
+  replicas: 2
+  image: ahmedelenany703/weatherapp-weather:v1
+  port: 5000
+
+
+ui:
+  replicas: 2
+  image: ahmedelenany703/weatherapp-ui:v1
+  port: 3000
+  

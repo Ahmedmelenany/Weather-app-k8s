@@ -1,0 +1,46 @@
+# statefulset.yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Release.Name }}-mysql
+  annotations:
+    "helm.sh/hook-weight": "0"
+spec:
+  serviceName: {{ .Release.Name }}-mysql
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-mysql
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-mysql
+    spec:
+      containers:
+      - name: mysql
+        image: {{ .Values.auth.db.image }}
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: root-password
+        - name: MYSQL_AUTH_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: auth-password
+        volumeMounts:
+        - name: my-storage
+          mountPath: /var/lib/mysql
+  volumeClaimTemplates:
+  - metadata:
+      name: my-storage
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 2Gi
+      selector:
+        matchLabels:
+          app: storage

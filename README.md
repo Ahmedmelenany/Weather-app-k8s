@@ -172,7 +172,7 @@ kubectl create secret tls weatherapp-ui-tls \
 kubectl get pods
 
 ```
-![pods ](./Screenshot-0.png)
+![pods ](./Images/Screenshot-0.png)
 
 
 #### ✅ Ingress Object
@@ -201,5 +201,40 @@ kubectl apply -f ingress.yaml
 
 ## Screenshots
 
-![pods ](./Screenshot-1.png)
-![pods ](./Screenshot-2.png)
+![pods ](./Images/Screenshot-1.png)
+![pods ](./Images/Screenshot-2.png)
+
+
+## 📦 Helm
+
+- **Helm Chart:** Managed the entire app under `weatherapp-chart`.
+
+### Installation 
+
+
+```bash
+helm install weatherapp ./weatherapp-chart
+```
+
+### Uninstallation
+```bash
+helm uninstall weatherapp
+```
+
+### Verifying
+
+```bash
+kubectl get po 
+```
+
+![helm pods ](./Images/Screenshot-3.png)
+
+
+```bash
+helm list 
+```
+
+![helm  ](./Images/Screenshot-4.png)
+
+
+## End < *_* >
