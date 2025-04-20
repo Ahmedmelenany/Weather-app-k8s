@@ -31,14 +31,14 @@ spec:
         volumeMounts:
         - name: my-storage
           mountPath: /var/lib/mysql
-    volumeClaimTemplates:
-    - metadata:
-        name: my-storage
-      spec:
-        accessModes: ["ReadWriteOnce"]
-        resources:
-          requests:
-            storage: 2Gi
-        selector:
-          matchLabels:
-            app: storage
+  volumeClaimTemplates:
+  - metadata:
+      name: my-storage
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 2Gi
+      selector:
+        matchLabels:
+          app: storage
